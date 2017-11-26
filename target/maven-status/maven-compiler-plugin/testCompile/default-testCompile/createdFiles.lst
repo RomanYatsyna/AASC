@@ -1,8 +1,0 @@
-com\ryatsyna\pages\wiki\WikiMainPage.class
-com\ryatsyna\steps\dictionary\DefinitionSteps.class
-com\ryatsyna\DemoTestRunner.class
-com\ryatsyna\steps\wiki\DefinitionSteps.class
-com\ryatsyna\pages\wiki\WikiArticlePage.class
-com\ryatsyna\steps\dictionary\implementations\EndUserSteps.class
-com\ryatsyna\pages\dictionary\DictionaryPage.class
-com\ryatsyna\steps\wiki\implementations\WikiUserSteps.class
