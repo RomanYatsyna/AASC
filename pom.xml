@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ryatsyna</groupId>
     <artifactId>AASC</artifactId>
-    <version>1.0</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>Serenity project using Cucumber and Selenium Grid</name>
@@ -16,7 +16,7 @@
         <serenity.cucumber.version>1.6.3</serenity.cucumber.version>
         <slf4j-simple.version>1.7.25</slf4j-simple.version>
         <junit.version>4.12</junit.version>
-        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
     </properties>
 
@@ -75,6 +75,9 @@
                         <include>**/*.java</include>
                     </includes>
                     <argLine>-Xmx1024m</argLine>
+                    <parallel>classes</parallel>
+                    <threadCount>4</threadCount>
+                    <forkCount>4</forkCount>
                 </configuration>
                 <executions>
                     <execution>
