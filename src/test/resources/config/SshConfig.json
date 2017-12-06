@@ -1,0 +1,16 @@
+{
+  "alpha": {
+    "name": "alpha",
+    "host": "192.168.1.8",
+    "port": "22",
+    "login": "alpha",
+    "password": "alpha2634700"
+  },
+  "beta": {
+    "name": "beta",
+    "host": "192.168.1.8",
+    "port": "22",
+    "login": "beta",
+    "password": "beta2634700"
+  }
+}
