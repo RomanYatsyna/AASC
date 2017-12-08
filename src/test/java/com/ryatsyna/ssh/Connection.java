@@ -4,10 +4,9 @@ import com.jcabi.log.Logger;
 import com.jcabi.ssh.Shell;
 import com.jcabi.ssh.Ssh;
 import com.jcabi.ssh.SshByPassword;
+import org.cactoos.io.DeadInput;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
 
@@ -33,23 +32,28 @@ public class Connection {
         return this.name;
     }
 
+    private String getCurrentDirectory() {
+        return currentDirectory
+                .replace("\n", "") + "/";
+    }
+
     public void connect() throws UnknownHostException {
         shell = new SshByPassword(host, port, login, password);
     }
 
-    public String changeDirectory(String path) throws IOException {
-        return currentDirectory = executeCommand("cd /home/" + login + "/" + path + " && pwd");
+    public void changeDirectory(String path) throws IOException {
+        currentDirectory = executeCommand("cd /home/" + login + "/" + path + " && pwd");
     }
 
-    public String changeToUserHomeDirectory() throws IOException {
-        return currentDirectory = executeCommand("cd /home/" + login + " && pwd");
+    public void changeToUserHomeDirectory() throws IOException {
+        currentDirectory = executeCommand("cd /home/" + login + " && pwd");
     }
 
     public String executeCommand(String command) throws IOException {
         if (currentDirectory == null)
             return new Shell.Plain(shell).exec(command);
         else
-            return new Shell.Plain(shell).exec("cd " + currentDirectory.replace("\n", "")
+            return new Shell.Plain(shell).exec("cd " + getCurrentDirectory()
                     + " && " + command);
     }
 
@@ -77,5 +81,22 @@ public class Connection {
                 Logger.stream(Level.INFO, true),
                 Logger.stream(Level.WARNING, true)
         );
+    }
+
+    public void downloadFile(String fileName) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            OutputStream outputStream = new FileOutputStream("target/" + fileName);
+
+            shell.exec(
+                    "cat " + getCurrentDirectory() + fileName,
+                    new DeadInput().stream(),
+                    baos,
+                    Logger.stream(Level.WARNING, this)
+            );
+            baos.writeTo(outputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -32,9 +32,19 @@ public class SshSteps {
     }
 
     @Step("Файл '{1}' успешно загружен в каталог: {2}")
-    public void uploadFileFoADirectory(Connection connection, String fileName, String destinationFolder) throws IOException {
+    public void uploadFileToADirectory(Connection connection, String fileName, String destinationFolder) throws IOException {
         connection.uploadFile(
                 System.getProperty("user.dir") + "/src/test/resources/testData/" + fileName,
+                destinationFolder);
+        assertThat(
+                connection.executeCommand("cd " + destinationFolder + "/ && ls"),
+                containsString(fileName));
+    }
+
+    @Step("Временный файл '{1}' успешно загружен в каталог: {2}")
+    public void uploadTempFileToADirectory(Connection connection, String fileName, String destinationFolder) throws IOException {
+        connection.uploadFile(
+                System.getProperty("user.dir") + "/target/" + fileName,
                 destinationFolder);
         assertThat(
                 connection.executeCommand("cd " + destinationFolder + "/ && ls"),
@@ -101,5 +111,10 @@ public class SshSteps {
                         .replace("\n", "")
                         .replace("\r", "")))
         );
+    }
+
+    @Step("Файл '{1}' скачан во временную директорию")
+    public void getFileFromADirectory(Connection connection, String fileName) {
+        connection.downloadFile(fileName);
     }
 }

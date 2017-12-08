@@ -2,13 +2,14 @@
 Функционал: Тесты по SSH
 
   Предыстория:
-    Пусть установлено соединение по SSH с alpha
+    Дано установлено соединение с alpha
+    И установлено соединение с beta
 
   @romano
   Сценарий: Копирование, просмотр и удаление тестового файла
-    Если удаленно создать в домашней директории тестовый каталог auto_tests_check
+    Если удаленно создать в домашней директории alpha тестовый каталог auto_tests_check
     И в этот каталог загрузить файл TestFileForAutotests.txt
-    То файл TestFileForAutotests.txt успешно загружается в тестовую директорию
+    То файл TestFileForAutotests.txt успешно загружается в тестовую директорию alpha
     И файл загружен с корректным содержимым
     """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -20,5 +21,9 @@
       occaecat cupidatat non proident, sunt in culpa qui officia
       deserunt mollit anim id est laborum.
     """
-    Если удалить с сервера тестовый файл TestFileForAutotests.txt вместе с тестовой директорией
-    То тестовые данные успешно удалены с сервера
+    Если сохранить загруженный alpha тестовый файл
+    И загрузить этот файл beta в тестовую директорию
+    То файл успешно копируется beta
+    Если удалить у alpha и beta тестовый файл TestFileForAutotests.txt вместе с тестовой директорией
+    То тестовые данные успешно удалены у alpha
+    И тестовые данные успешно удалены у beta
