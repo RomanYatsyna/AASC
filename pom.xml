@@ -12,12 +12,13 @@
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>1.7.0</serenity.version>
-        <serenity.cucumber.version>1.6.3</serenity.cucumber.version>
-        <slf4j-simple.version>1.7.25</slf4j-simple.version>
+        <serenity.core.version>2.0.81</serenity.core.version>
+        <serenity.cucumber.version>1.9.45</serenity.cucumber.version>
+        <slf4j-simple.version>1.7.28</slf4j-simple.version>
         <junit.version>4.12</junit.version>
-        <maven-failsafe-plugin.version>2.19.1</maven-failsafe-plugin.version>
-        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <serenity-maven-plugin.version>2.0.81</serenity-maven-plugin.version>
     </properties>
 
     <repositories>
@@ -45,7 +46,7 @@
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
-            <version>${serenity.version}</version>
+            <version>${serenity.core.version}</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
@@ -97,7 +98,7 @@
             <plugin>
                 <groupId>net.serenity-bdd.maven.plugins</groupId>
                 <artifactId>serenity-maven-plugin</artifactId>
-                <version>${serenity.version}</version>
+                <version>${serenity-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>serenity-reports</id>
