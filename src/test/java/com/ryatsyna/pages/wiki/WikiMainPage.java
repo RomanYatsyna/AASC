@@ -7,7 +7,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 import java.util.List;
 
-@DefaultUrl("http://wikipedia.org")
+@DefaultUrl("https://ru.wikipedia.org")
 public class WikiMainPage extends PageObject {
 
     @FindBy(css = ".central-featured .central-featured-lang")
@@ -16,7 +16,7 @@ public class WikiMainPage extends PageObject {
     @FindBy(id = "searchInput")
     private WebElementFacade searchInput;
 
-    @FindBy(css = "fieldset .pure-button-primary-progressive")
+    @FindBy(id = "searchButton")
     private WebElementFacade submit;
 
 
